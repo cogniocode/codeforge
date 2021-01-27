@@ -22,7 +22,6 @@ pub mod traditional {
 
     use crate::code::generator::CodeGenerator;
     use crate::code::models::{Code, CodeKind, CodeLength};
-    use std::error::Error;
     use serde::__private::Formatter;
 
     const NUMBERS_POOL: [char; 10] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
@@ -37,11 +36,9 @@ pub mod traditional {
     #[derive(Debug)]
     pub struct ParseOptionsError;
 
-    impl Error for ParseOptionsError {}
-
     impl std::fmt::Display for ParseOptionsError {
-        fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
-            write!(f, "Couldn't parse generator options.")
+        fn fmt(&self, f: &mut Formatter::<'_>) -> std::fmt::Result {
+            "invalid generator options".fmt(f)
         }
     }
 

@@ -14,7 +14,7 @@ pub async fn generate_code(code_request: CodeRequestModel) -> Result<impl warp::
 
     let generator = match generator {
         Ok(t) => t,
-        Err(_) => return Ok(warp::reply::with_status(warp::reply::json(&ErrorModel::from_str("Couldn't parse generation options.").unwrap()), StatusCode::BAD_REQUEST))
+        Err(_) => return Ok(warp::reply::with_status(warp::reply::json(&ErrorModel::new("Couldn't parse generation options.")), StatusCode::BAD_REQUEST))
     };
 
     let password = generator.generate(code_request.length);
